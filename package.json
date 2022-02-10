@@ -1,0 +1,11 @@
+{
+  "name": "coding-exercise-acme",
+  "version": "1.0.0",
+  "description": "coding exercise for ioet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kryzale",
+  "license": "ISC"
+}
