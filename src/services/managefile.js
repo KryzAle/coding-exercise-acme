@@ -1,6 +1,9 @@
+// Declaration of modules
 const fs = require("fs");
 const Employee = require("../models/employee");
-
+/**
+ * read the file and return its content.
+ */
 function readfile(file) {
   try {
     return fs.readFileSync(file, "utf8", (err, data) => {
@@ -14,7 +17,11 @@ function readfile(file) {
     console.log("Oops there are an error");
   }
 }
-
+/**
+ * handles data by converting it into objects Employee
+ * @param {String} path path of file
+ * @returns {Array<Employee>} the array of Employees
+ */
 function managefile(path) {
   let employees = [];
   try {
@@ -27,7 +34,9 @@ function managefile(path) {
     });
     return employees;
   } catch (err) {
-    console.log("There is an error with the file, check that it is in the correct format!");
+    console.log(
+      "There is an error with the file, check that it is in the correct format!"
+    );
     process.exit();
   }
 }

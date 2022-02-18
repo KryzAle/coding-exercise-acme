@@ -1,5 +1,6 @@
 // Declaration of modules
 const Coincidence = require("../models/coincidence");
+const Employee = require("../models/employee");
 const managefile = require("../services/managefile");
 /**
  * calculate the coincidences of the employees registered in the txt
@@ -18,7 +19,11 @@ exports.seekCoincidence = (path) =>{
     }
   }
 }
-
+/**
+ * converts each employee into the possible combination pairs
+ * @param {Array<Employee>} employeesObj The array of employee data 
+ * @returns {Array<Coincidence>} the array of pairs of employees
+ */
 function convertPairs(employeesObj) {
   let employePairs = [];
   let coincidencesObj = [];
@@ -34,6 +39,12 @@ function convertPairs(employeesObj) {
   }
   return coincidencesObj;
 }
+/**
+ * Parse the data, converts it to dates and counts the matches between each pair of schedules 
+ * @param {Array<String>} firstSchedule The schedule of first employee
+ * @param {Array<String>} secondSchedule The schedule of second employee
+ * @returns {Number} the number of coincidences between schedules
+ */
 function getTimes(firstSchedule, secondSchedule) {
   let coincidences = 0;
   let newFirstSched = changeFormat(firstSchedule);
@@ -71,6 +82,11 @@ function getTimes(firstSchedule, secondSchedule) {
   }
   return coincidences;
 }
+/**
+ * Converts schedules to an array of days and hours.
+ * @param {Array<String>} schedule The array of schedules
+ * @returns {Array<String>} the array of schedules in new format
+ */
 function changeFormat(schedule) {
   return schedule.map((element) =>
     element
@@ -78,6 +94,10 @@ function changeFormat(schedule) {
       .filter((item) => item !== "" && item !== "-")
   );
 }
+/**
+ * prints the Coincidence object with the required output
+ * @param {Coincidence} coincidence The array of schedules
+ */
 function print(coincidence) {
   console.log(
     coincidence.getFirstEmployee()._name +
