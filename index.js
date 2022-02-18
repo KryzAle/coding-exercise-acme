@@ -1,6 +1,2 @@
-const managefile = require('./services/managefile.js');
-const employeecontroller = require('./controller/employeeController.js');
-
-//console.log(managefile("data.txt"));
-
-employeecontroller(managefile("data.txt"));
+const employeecontroller = require('./src/controller/employeeController.js');
+employeecontroller("data.txt");

@@ -1,34 +1,41 @@
-function seekCoincidence(employees) {
-  let result =[];
-  const pairsEmployee = convertPairs(employees);
-  //console.log(pairsEmployee);
+// Declaration of modules
+const Coincidence = require("../models/coincidence");
+const managefile = require("../services/managefile");
+/**
+ * calculate the coincidences of the employees registered in the txt
+ * @param {String} data The path of data txt
+ */
+function seekCoincidence(path) {
+  const pairsEmployee = convertPairs(managefile(path));
   for (let i = 0; i <= pairsEmployee.length - 1; i++) {
-    //console.log(i);
-    let timesCoincidences = getTimes(pairsEmployee[i][0]._schedule, pairsEmployee[i][1]._schedule);
-    console.log(pairsEmployee[i][0]._name+"-"+pairsEmployee[i][1]._name+":"+timesCoincidences);
-    result.push()
+    let timesCoincidences = getTimes(
+      pairsEmployee[i]._firstEmployee._schedule,
+      pairsEmployee[i]._secEmployee._schedule
+    );
+    if (timesCoincidences != 0) {
+      pairsEmployee[i].setTimesCoincidence(timesCoincidences);
+      print(pairsEmployee[i]);
+    }
   }
-
-  //let timesCoincidences = getTimes(pairsEmployee[0][0]._schedule, pairsEmployee[0][1]._schedule);
-  //console.log(timesCoincidences);
 }
 
 function convertPairs(employeesObj) {
   let employePairs = [];
+  let coincidencesObj = [];
   for (let i = 0; i <= employeesObj.length - 1; i++) {
     for (let j = i + 1; j <= employeesObj.length - 1; j++) {
       let employees = [];
       employees.push(employeesObj[i], employeesObj[j]);
       employePairs.push(employees);
+      coincidencesObj.push(
+        new Coincidence(employeesObj[i], employeesObj[j], 0)
+      );
     }
   }
-  console.log(employePairs);
-  return employePairs;
+  return coincidencesObj;
 }
 function getTimes(firstSchedule, secondSchedule) {
   let coincidences = 0;
-  //console.log(firstSchedule);
-  //console.log(secondSchedule);
   let newFirstSched = changeFormat(firstSchedule);
   let newSecSched = changeFormat(secondSchedule);
 
@@ -43,9 +50,6 @@ function getTimes(firstSchedule, secondSchedule) {
         .map((element) => element[0]);
     }
   }
-  //console.log(newFirstSched);
-  //console.log(newSecSched);
-
   for (i = 0; i <= newFirstSched.length - 1; i++) {
     let hourInFirstSchedule = new Date("2020-01-01 " + newFirstSched[i][1]);
     let hourOutFirstSchedule = new Date("2020-01-01 " + newFirstSched[i][2]);
@@ -72,6 +76,15 @@ function changeFormat(schedule) {
     element
       .split(new RegExp("(MO|TU|WE|TH|FR|SA|SU|-)"))
       .filter((item) => item !== "" && item !== "-")
+  );
+}
+function print(coincidence) {
+  console.log(
+    coincidence.getFirstEmployee()._name +
+      "-" +
+      coincidence.getSecEmployee()._name +
+      ":" +
+      coincidence._timesCoincidence
   );
 }
 module.exports = seekCoincidence;

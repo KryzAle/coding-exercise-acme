@@ -19,7 +19,6 @@ function managefile (path){
     let extract = element.split('=');
     employees.push(new Employee(extract[0],extract[1].split(",")));
   });
-  //console.log(employees);
   return employees;
 }
 
