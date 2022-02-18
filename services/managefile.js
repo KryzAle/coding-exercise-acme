@@ -1,6 +1,5 @@
 const fs = require("fs");
 const Employee = require("../models/employee");
-const emp = require("../models/employee");
 
 
 function readfile (file){

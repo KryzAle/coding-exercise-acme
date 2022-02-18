@@ -1,10 +1,12 @@
 function seekCoincidence(employees) {
+  let result =[];
   const pairsEmployee = convertPairs(employees);
   //console.log(pairsEmployee);
   for (let i = 0; i <= pairsEmployee.length - 1; i++) {
     //console.log(i);
     let timesCoincidences = getTimes(pairsEmployee[i][0]._schedule, pairsEmployee[i][1]._schedule);
     console.log(pairsEmployee[i][0]._name+"-"+pairsEmployee[i][1]._name+":"+timesCoincidences);
+    result.push()
   }
 
   //let timesCoincidences = getTimes(pairsEmployee[0][0]._schedule, pairsEmployee[0][1]._schedule);
@@ -20,6 +22,7 @@ function convertPairs(employeesObj) {
       employePairs.push(employees);
     }
   }
+  console.log(employePairs);
   return employePairs;
 }
 function getTimes(firstSchedule, secondSchedule) {
