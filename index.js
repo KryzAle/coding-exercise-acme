@@ -1,2 +1,2 @@
-const employeecontroller = require('./src/controller/employeeController.js');
-employeecontroller("data.txt");
+const {seekCoincidence} = require('./src/controller/employeeController.js');
+seekCoincidence("data.txt");

@@ -5,7 +5,7 @@ const managefile = require("../services/managefile");
  * calculate the coincidences of the employees registered in the txt
  * @param {String} data The path of data txt
  */
-function seekCoincidence(path) {
+exports.seekCoincidence = (path) =>{
   const pairsEmployee = convertPairs(managefile(path));
   for (let i = 0; i <= pairsEmployee.length - 1; i++) {
     let timesCoincidences = getTimes(
@@ -87,4 +87,3 @@ function print(coincidence) {
       coincidence._timesCoincidence
   );
 }
-module.exports = seekCoincidence;
