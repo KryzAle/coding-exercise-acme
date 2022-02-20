@@ -35,7 +35,7 @@ function managefile(path) {
     return employees;
   } catch (err) {
     console.log(
-      "There is an error with the file, check that it is in the correct format!"
+      "There is an error with the file, check that data is in the correct format!"
     );
     process.exit();
   }
