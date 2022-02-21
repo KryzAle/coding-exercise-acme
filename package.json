@@ -1,4 +1,22 @@
 {
+  "name": "coding-exercise-acme",
+  "version": "1.0.0",
+  "description": "coding-exercise-acme",
+  "main": "index.js",
+  "scripts": {
+      "start": "node index.js",
+      "test": "jest"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/KryzAle/coding-exercise-acme.git"
+  },
+  "author": "Cristian Cabezas F",
+  "license": "ISC",
+  "bugs": {
+      "url": "https://github.com/KryzAle/coding-exercise-acme/issues"
+  },
+  "homepage": "https://github.com/KryzAle/coding-exercise-acme#readme",
   "devDependencies": {
     "jest": "^27.5.1"
   }

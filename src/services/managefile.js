@@ -14,7 +14,7 @@ function readfile(file) {
       return data;
     });
   } catch (err) {
-    console.log("Oops there are an error");
+    console.log("Oops there is an error");
   }
 }
 /**
@@ -34,7 +34,7 @@ function managefile(path) {
     });
     return employees;
   } catch (err) {
-    console.log(
+    console.error(
       "There is an error with the file, check that data is in the correct format!"
     );
     process.exit();
